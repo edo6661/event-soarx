@@ -15,8 +15,10 @@ model Event {
   title String 
   description String
   location String
-  availability Boolean @default(false)
+  availability String
+  slug String 
   image String
+  date DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -24,6 +26,11 @@ model Event {
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   @@index([title])
+}
+
+enum availability {
+  Open
+  Close
 }
 
 model User {

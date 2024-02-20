@@ -1,9 +1,10 @@
 "use client";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 const PressClippings = () => {
-  const [displayedImages, setDisplayedImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [displayedImages, setDisplayedImages] = useState<string[]>([]);
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     const imageLinks = [
@@ -123,12 +124,12 @@ const PressClippings = () => {
     });
   };
 
-  const openImagePopup = (image) => {
+  const openImagePopup = (image: string) => {
     setSelectedImage(image);
   };
 
   const closeImagePopup = () => {
-    setSelectedImage(null);
+    setSelectedImage("");
   };
 
   return (
@@ -158,7 +159,12 @@ const PressClippings = () => {
       {selectedImage && (
         <div className="image-popup">
           <div className="image-popup-content" id="style-2">
-            <img src={selectedImage} alt="Popup Image" />
+            <Image
+              width={400}
+              height={400}
+              src={selectedImage}
+              alt="Popup Image"
+            />
             <button className="close-button" onClick={closeImagePopup}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "./_components/Loading";
 const LoginPage = () => {
@@ -14,12 +14,12 @@ const LoginPage = () => {
   });
 
   // HANDLE CHANGE
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setErrors({ ...errors, [name]: "" }); // clear error when user types
-    if (name === "email") setEmail(value);
-    if (name === "password") setPassword(value);
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setErrors({ ...errors, [name]: "" });
+  //   if (name === "email") setEmail(value);
+  //   if (name === "password") setPassword(value);
+  // };
 
   // useEffect(() => {
   //   if (auth.user) {
@@ -28,7 +28,7 @@ const LoginPage = () => {
   //   }
   // }, [auth]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     // setLoading(true);
@@ -140,7 +140,7 @@ const LoginPage = () => {
                 placeholder="name@mail.com"
                 title="Inpit title"
                 name="email"
-                onChange={handleChange}
+                // onChange={handleChange}
                 type="text"
                 className="input_field w-full"
                 id="email_field"
@@ -191,7 +191,7 @@ const LoginPage = () => {
               className="input_field"
               id="password_field"
               name="password"
-              onChange={handleChange}
+              // onChange={handleChange}
             />
           </div>
           {errors.password && (
